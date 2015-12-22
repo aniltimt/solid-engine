@@ -1,3 +1,6 @@
-<h3>User</h3>
-<p>Name: <%= @user.name if @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<h3>User Details Page</h3>
+<p><b>Name:</b> <%= @user.name if @user.name %></p>
+<p><b>Role:</b> <%= @user.role if @user.role %></p>
+<p><b>Email:</b> <%= @user.email if @user.email %></p>
+<p><b>Registered On:</b> <%= @user.created_at if @user.created_at %></p>
+

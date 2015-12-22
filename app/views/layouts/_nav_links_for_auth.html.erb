@@ -1,12 +1,21 @@
 <% if user_signed_in? %>
-  <li><%= link_to 'Edit account', edit_user_registration_path %></li>
-  <li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
-<% else %>
-  <li><%= link_to 'Sign in', new_user_session_path %></li>
-  <li><%= link_to 'Sign up', new_user_registration_path %></li>
+<% if current_user.try(:admin?) %>
+<li class="dropdown" role="presentation">
+  <a aria-expanded="false" aria-haspopup="true" role="button" href="#" data-toggle="dropdown" class="dropdown-toggle"> User Action <span class="caret"></span> </a> 
+  <ul class="dropdown-menu">    
+    <li><%= link_to 'User Roles', users_path %></li>
+    <li><%= link_to 'New User Listing', users_listing_path %></li>    
+    <li class="divider" role="separator"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</li>
+<% end %>
 <% end %>
 <% if user_signed_in? %>
-  <% if current_user.try(:admin?) %>
-    <li><%= link_to 'Users', users_path %></li>
-  <% end %>
+<li><%= link_to "Inbox", mailbox_inbox_path %></li>
+<li><%= link_to 'Edit account', edit_user_registration_path %></li>
+<li><%= link_to 'Sign out', destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+<li><%= link_to 'Sign in', new_user_session_path %></li>
+<li><%= link_to 'Sign up', new_user_registration_path %></li>
 <% end %>

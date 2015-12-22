@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <h3>New User/Doctor Registered</h3>
+    <div data-example-id="bordered-table" class="bs-example">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>#ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Registered on</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+          <tr>
+            <% unless user == current_user %>
+            <% if user.status == nil %>
+            <th scope="row"><%= user.id %></th>
+            <td><%= user.name %></td>
+            <td><%= link_to user.email, user %></td>
+            <td><%= user.created_at %></td>
+            <td>
+              <%= link_to user_approve_path(user) do %>
+              <i class="glyphicon glyphicon-ok">Approve</i>
+              <% end %> | 
+              <%= link_to user_disapprove_path(user), {style: "color: red"} do %>
+              <i class="glyphicon glyphicon-remove">DisApprove</i>
+              <% end %>
+            </td>
+            <% end %>
+            <% end %>
+          </tr>
+          <% end %>            
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
